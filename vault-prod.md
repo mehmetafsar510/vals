@@ -2,7 +2,9 @@
 
 # Generate the certs
 mkdir -p /opt/vault/{tls,data}
+
 cd /opt/vault/tls
+
 openssl req   -out tls.crt   -new   -keyout tls.key   -newkey rsa:4096   -nodes   -sha256   -x509   -subj "/O=HashiCorp/CN=Vault"   -addext "subjectAltName = IP:<loopbackIP>,DNS:<host>"   -days 3650
 
 

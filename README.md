@@ -54,7 +54,7 @@ Now input the template of your YAML and refer to `vals`' Vault provider by using
 
 ```console
 $ VAULT_TOKEN=yourtoken VAULT_ADDR=http://127.0.0.1:8200/ \
-  echo "foo: ref+vault://secret/data/foo?proto=http#/mykey" | vals eval -f -
+  echo "foo: ref+vault://secret/foo#/mykey" | vals eval -f -
 ```
 
 Voila! `vals`, replacing every reference to your secret value in Vault, produces the output looks like:
@@ -82,7 +82,7 @@ foo: myvalue
 Use value references as Helm Chart values, so that you can feed the `helm template` output to `vals -f -` for transforming the refs to secrets.
 
 ```console
-$ helm template mysql-1.3.2.tgz --set mysqlPassword='ref+vault://secret/data/foo#/mykey' | vals ksdecode -o yaml -f - | tee manifests.yaml
+$ helm template mysql-1.3.2.tgz --set mysqlPassword='ref+vault://secret/foo#/mykey' | vals ksdecode -o yaml -f - | tee manifests.yaml
 apiVersion: v1
 kind: Secret
 metadata:

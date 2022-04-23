@@ -17,10 +17,17 @@ pipeline {
                         export VAULT_ADDR=https://${env.VAULT_IP}:8200
                         export VAULT_CACERT=${env.VAULT_CACERT}
                         echo "password: ref+vault://mehmet/crediantial#/password" | vals eval -f -
+                        cat mysql.yml | vals eval -f - | tee all.yaml 
+                        rm -rf all.yaml
                         """
                     }
                 }
             }  
         }   
+    }
+    post {
+        success {
+            echo "You are great man"
+        }
     }
 }

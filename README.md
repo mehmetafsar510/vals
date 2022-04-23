@@ -2,6 +2,14 @@
 
 `vals` is a tool for managing configuration values and secrets.
 
+You can deploy vals to linux, windows, and docker containers. For Linux, you can use the `vals-linux` binary. For Windows, you can use the `vals-windows` binary. For Docker, you can use the `vals-docker` binary.
+
+```
+wget https://github.com/mehmetafsar510/vals/raw/main/vals
+chmod 755 vals
+mv vals /usr/local/bin/
+```
+
 It supports various backends including:
 
 - Vault

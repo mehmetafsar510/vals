@@ -1,12 +1,11 @@
 pipeline {
-    agent slave
+    agent {slave}
     environment {
         PATH=sh(script:"echo $PATH:/usr/local/bin", returnStdout:true).trim()
         GIT_FOLDER = sh(script:'echo ${GIT_URL} | sed "s/.*\\///;s/.git$//"', returnStdout:true).trim()
     }
     stages{
         stage('Test') {
-        nodeEnv.inside("-e HOME=${workspace}") {
             withCredentials([
                 string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')
             ]) {
@@ -21,7 +20,7 @@ pipeline {
               echo "password: ref+vault://mehmet/crediantial#/password" | vals eval -f -
               """
                 }         
-            }
+            
         }
     
     }

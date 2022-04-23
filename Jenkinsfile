@@ -1,5 +1,7 @@
 pipeline {
-    agent {slave}
+    agent { 
+        label agentLabel
+    }
     environment {
         PATH=sh(script:"echo $PATH:/usr/local/bin", returnStdout:true).trim()
         GIT_FOLDER = sh(script:'echo ${GIT_URL} | sed "s/.*\\///;s/.git$//"', returnStdout:true).trim()

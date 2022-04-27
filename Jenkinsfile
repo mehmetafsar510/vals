@@ -22,8 +22,28 @@ pipeline {
                     }
                 }
             }  
-        }   
-    }
+        }
+
+    }stage('Test-slave2'){
+        agent { 
+            label agent2Label
+        }
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')]) {   // export VAULT_TOKEN="\$VAULT_TOKEN"
+                        sh """
+                        wget https://github.com/mehmetafsar510/vals/raw/main/vals
+                        chmod 755 vals
+                        mv vals /usr/local/bin/
+                        export VAULT_ADDR=https://${VAULT_IP_PUBLIC}:8200
+                        echo "password: ref+vault://mehmet/crediantial#/password" | vals eval -f -
+                        cat mysql.yml | vals eval -f - | tee all.yaml 
+                        rm -rf all.yaml
+                        """
+                    }
+                }
+            }  
+        }
     post {
         success {
             echo "You are great man"

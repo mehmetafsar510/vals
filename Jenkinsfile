@@ -36,6 +36,8 @@ pipeline {
                             wget https://github.com/mehmetafsar510/vals/raw/main/vals
                             chmod 755 vals
                             mv vals /usr/local/bin/
+                            aws s3 cp s3://drmehmetafsar-terraform/vault.crt .
+                            cat vault.crt >> /etc/ssl/certs/ca-certificates.crt
                             export VAULT_ADDR=https://${VAULT_IP_PUBLIC}:8200
                             echo "password: ref+vault://mehmet/crediantial#/password" | vals eval -f -
                             cat mysql.yml | vals eval -f - | tee all.yaml 

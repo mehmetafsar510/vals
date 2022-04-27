@@ -14,7 +14,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')]) {   // export VAULT_TOKEN="\$VAULT_TOKEN"
                         sh """
                         export VAULT_ADDR=https://${VAULT_IP}:8200
-                        export VAULT_CACERT=${VAULT_CACERT}
+                        export VAULT_CACERT=/etc/vault.d/vault.crt
                         echo "password: ref+vault://mehmet/crediantial#/password" | vals eval -f -
                         cat mysql.yml | vals eval -f - | tee all.yaml 
                         rm -rf all.yaml

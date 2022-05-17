@@ -15,6 +15,12 @@ yum install -y yum-utils
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 yum -y install vault
 ```
+install kubeaudit
+```
+wget https://github.com/Shopify/kubeaudit/releases/download/0.16.0/kubeaudit_0.16.0_linux_amd64.tar.gz
+tar -xvf kubeaudit_0.16.0_linux_amd64.tar.gz
+mv kubeaudit /usr/local/bin/
+```
 
 It supports various backends including:
 

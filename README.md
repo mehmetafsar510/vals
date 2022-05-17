@@ -18,8 +18,14 @@ yum -y install vault
 install kubeaudit
 ```
 wget https://github.com/Shopify/kubeaudit/releases/download/0.16.0/kubeaudit_0.16.0_linux_amd64.tar.gz
-tar -xvf kubeaudit_0.16.0_linux_amd64.tar.gz
+tar -xf kubeaudit_0.16.0_linux_amd64.tar.gz
 mv kubeaudit /usr/local/bin/
+```
+install nova
+```
+curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
+tar -xvf nova.tar.gz
+sudo mv nova /usr/local/bin/
 ```
 
 It supports various backends including:

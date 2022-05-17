@@ -9,6 +9,12 @@ wget https://github.com/mehmetafsar510/vals/raw/main/vals
 chmod 755 vals
 mv vals /usr/local/bin/
 ```
+install vault
+```
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+yum -y install vault
+```
 
 It supports various backends including:
 

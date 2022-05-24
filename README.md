@@ -27,6 +27,12 @@ curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0
 tar -xvf nova.tar.gz
 sudo mv nova /usr/local/bin/
 ```
+509 certificate error
+```
+sudo vi /etc/pki/tls/certs/ca-bundle.crt (yum)
+sudo vi /etc/ssl/certs/ca-certificates.crt (apt) 
+```
+
 
 It supports various backends including:
 
